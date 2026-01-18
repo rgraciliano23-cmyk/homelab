@@ -1,1 +1,33 @@
-Varios busg de apache para subir o zabbix
+# Primeira instalação ZABBIX no servidor
+
+📅 Data: 2026-01  
+🖥️ Ambiente: Proxmox VE  
+📌 Categoria: Rede
+
+---
+
+## 🧨 Problema
+Apos alguns problemas na porta APACHE que estavam ocupadas e tive que redirecionar para a porta 8080 o ZABBIX rotou com HTTP
+Porem precisa configurar o dashboard sendo que nao ira funcionar 24/7 apenas em dias de estudos 
+
+---
+
+## 🔍 Diagnóstico
+Erro ao entrar no ZABBIX
+
+---
+
+
+## 🛠️ Solução aplicada
+O que você fez para resolver.
+Foi mudado a porta padrão de 80 para 8080
+---
+
+## ✅ Resultado
+O que voltou a funcionar.
+Tive o primeiro acesso web do ZABBIX
+
+---
+
+## 📚 Lição aprendida
+Verificação de portas padroes e articulação com banco de dados MARIABD
