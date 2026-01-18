@@ -1,19 +1,38 @@
-# 🧪 Home Lab
+# 🧪 Homelab de Infraestrutura – Proxmox + Linux
 
-Este repositório documenta meu ambiente de home lab para aprendizado prático.
+Este repositório documenta meu homelab pessoal voltado para estudo,
+automação e simulação de ambientes corporativos.
 
 ## 🎯 Objetivos
-- Aprender Linux e virtualização
-- Monitoramento de servidores
-- Containers e automação
-- Documentar erros e soluções
+- Aprimorar conhecimentos em infraestrutura Linux
+- Virtualização e containers
+- Monitoramento e automação
+- Simular cenários reais de produção
 
 ## 🖥️ Hardware
-- Servidor Dell 2950
-- Hypervisor: Proxmox 7.4-20 (Suportado pelo servidor que sera ultilizado no homelab)
-- Uso: estudo e testes
+- Servidor: Dell PowerEdge 2950
+- CPU: Xeon
+- RAM: 8 GB
+- Storage: RAID 1tb (SAS/SATA)
 
-## 📊 Serviços
-- Netdata (monitoramento)
-- Uptime Kuma
-- Docker
+## 🧩 Stack utilizada
+- Proxmox VE
+- Debian / Ubuntu Server
+- Docker & Docker Compose
+- Zabbix
+- Firewall (iptables / pfSense)
+- Backup automatizado (rsync)
+
+## 🗺️ Arquitetura
+Diagrama disponível em `/diagrams`
+
+## 🔐 Segurança
+- VLANs
+- Firewall
+- Acesso SSH com chave
+- Backup versionado
+
+## 🚀 Próximos passos
+- Ansible
+- High Availability
+- CI/CD para infraestrutura
