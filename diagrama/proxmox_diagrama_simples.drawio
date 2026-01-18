@@ -1,0 +1,27 @@
+<mxfile host="app.diagrams.net">
+  <diagram name="Proxmox Simples">
+    <mxGraphModel>
+      <root>
+        <mxCell id="0"/>
+        <mxCell id="1" parent="0"/>
+
+        <mxCell id="2" value="Proxmox Host" style="rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="80" y="40" width="640" height="360" as="geometry"/>
+        </mxCell>
+
+        <mxCell id="3" value="CTs Linux&#10;- Linux&#10;- Linux Server" style="rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="120" y="120" width="220" height="120" as="geometry"/>
+        </mxCell>
+
+        <mxCell id="4" value="Containers (CT)&#10;- Zabbix" style="rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="380" y="120" width="260" height="120" as="geometry"/>
+        </mxCell>
+
+        <mxCell id="5" value="Rede&#10;LAN | WAN" style="rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="260" y="280" width="300" height="90" as="geometry"/>
+        </mxCell>
+
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>
