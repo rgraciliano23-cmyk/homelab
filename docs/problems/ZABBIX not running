@@ -1,1 +1,64 @@
 
+📅 Data: 2026-01  
+🖥️ Ambiente: Proxmox VE  
+📌 Categoria: Rede
+
+---
+
+## 🧨 Problema
+Foi identificado que o Zabbix Server não estava coletando dados do servidor, dando a impressão de que o serviço não estava em execução.
+
+---
+
+## 🔍 Diagnóstico
+Inicialmente, foi verificado o status do serviço Zabbix:
+
+        systemctl status zabbix-server
+        service zabbix-server status
+
+Ambos os comandos retornaram o status:
+
+        active (running)
+
+Confirmando que o serviço estava em execução.
+Após isso, foi realizada a análise dos logs do servidor Zabbix:
+
+        tail -n 80 /var/log/zabbix/zabbix_server.log
+
+Log identificado:
+
+        [Z3001] connection to database 'zabbix' failed:
+        [1045] Access denied for user 'zabbix'@'localhost' (using password: YES)
+        database is down: reconnecting in 10 seconds
+
+
+O log indicava claramente falha de autenticação no banco de dados, sugerindo erro na senha do usuário zabbix.
+Após análise adicional (incluindo apoio de IA), foi levantada a hipótese de inconsistência entre as credenciais configuradas no Zabbix e no MariaDB.
+
+---
+
+
+## 🛠️ Solução aplicada
+Foi confirmada a divergência de senhas tanto no Zabbix Server quanto no frontend web.
+As correções foram realizadas nos seguintes arquivos:
+Zabbix Server:
+
+        nano /etc/zabbix/zabbix_server.conf
+
+Frontend Web (por precaução):
+
+        nano /etc/zabbix/web/zabbix.conf.php
+
+As credenciais foram ajustadas para corresponder exatamente às configuradas no MariaDB.
+Após a correção, o serviço foi reiniciado e o acesso ao banco de dados normalizado.
+
+## ✅ Resultado
+O que voltou a funcionar.
+O Zabbix esta operante
+
+---
+
+## 📚 Lição aprendida
+Sempre validar as credenciais do banco de dados quando houver falhas silenciosas no Zabbix
+Logs são fundamentais para diagnóstico rápido e preciso
+Manter consistência entre configurações do backend e frontend evita falhas difíceis de identificar
