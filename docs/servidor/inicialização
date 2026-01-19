@@ -1,1 +1,33 @@
+📅 Data: 2026-01  
+🖥️ Ambiente: Proxmox VE  
+📌 Categoria: Infra
 
+---
+
+## 🧨 Problema
+Apos inicializar e buscar na rede fpo constatado que o servidor não estava inicializando sozinho 
+uma vez que o mesmo é sempre desligado apos o uso em estudos ficou muito suspeito a sua nao inicialização
+---
+
+## 🔍 Diagnóstico
+Apos colocar o monitor foi constatado que o mesmo estava pedindo para apertar F1 
+Apos algumas pesquisas foi verificado que o mesmo esta com problema de "DEGRADED" tipico de disco com falha ou 
+removido.
+
+---
+
+
+## 🛠️ Solução aplicada
+Apos ponderar muito nao foi optado mudar a RAID do mesmo uma vez que se encontra com RAID1 (espelhada)
+pois os recursos são friamente calculados para outros fins, mesmo sabendo que se acontecer algo com o sda1 posso perder tudo ou 
+se eu mudar a RAID para 0 posso perder todos os arquivos no momento nao vou optar por mudar a RAID 
+
+---
+
+## ✅ Resultado
+Ja se estuda a possibilidade de fazer o backup geral em alguma nuvem para a manutenção critica do mesmo, por hora sera aplicado algumas mudanças internas 
+
+---
+
+## 📚 Lição aprendida
+Sempre manter o backup em dias e em facil acesso 
