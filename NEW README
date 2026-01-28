@@ -1,0 +1,7 @@
+Alteração de Infraestrutura
+
+O projeto foi migrado para a Oracle Cloud devido às limitações técnicas e aos custos do servidor Dell, que ficaram fora do escopo inicialmente previsto (custo zero).
+
+Como alternativa, será criado um novo Homelab neste GitHub utilizando o Oracle Cloud Free Tier, operando de forma direta, sem o uso ou gerenciamento via Proxmox.
+
+Essa mudança garante maior estabilidade, reduz custos operacionais e simplifica a administração do ambiente.
