@@ -1,0 +1,31 @@
+
+🛠️ Log de Incidente: Falha de Inicialização (Servidor Físico)
+📅 Data: Janeiro de 2026
+
+🖥️ Ambiente: Proxmox VE
+
+📌 Categoria: Infraestrutura / Storage
+
+🧨 Problema
+Após o ciclo normal de desligamento (o servidor é desligado após o uso em laboratórios de estudo), foi constatado que o sistema não inicializou 
+automaticamente conforme esperado. A falha de boot impedia o acesso remoto ao ambiente Proxmox.
+
+🔍 Diagnóstico
+Ao conectar um monitor físico ao servidor, identificou-se a mensagem de erro solicitando a tecla F1 para prosseguir.
+Status: O array de discos foi reportado como "DEGRADED".
+Causa: Típico de um disco com falha parcial ou que foi "desconectado" logicamente pela controladora durante o período em que o servidor esteve desligado.
+
+🛠️ Solução Aplicada
+Houve uma ponderação sobre a mudança de nível de RAID, porém:
+Manutenção do RAID 1: Decidi manter a configuração espelhada.
+Justificativa: Como os recursos do servidor são "friamente calculados" para fins específicos de estudo, a redundância é vital. Mudar para RAID 0 para
+ganhar espaço ou performance não compensaria o risco de perda total dos dados e das VMs no estado atual do sda1.
+
+✅ Resultado
+O servidor foi reiniciado e a reconstrução do espelhamento foi iniciada.
+Próximo Passo: Já está em estudo a implementação de um backup geral em nuvem para permitir manutenções críticas e preventivas
+sem o risco de downtime prolongado ou perda de dados.
+Status atual: Operacional, com mudanças internas de monitoramento sendo aplicadas.
+
+📚 Lição Aprendida
+"Manter o backup em dia e em local de fácil acesso não é opcional, é sobrevivência."
