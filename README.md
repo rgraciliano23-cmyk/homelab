@@ -22,10 +22,10 @@
 
 ### 🧩 Stack de Tecnologias
 * **Virtualização:** Proxmox VE (KVM/LXC)
-* **Sistemas Base:** Debian & Ubuntu Server
-* **Containers:** Docker & Docker Compose
-* **Monitoramento:** Zabbix & Grafana
-* **Redes:** pfSense / iptables
+* **Sistemas Base:** Ubuntu Server
+* **Containers:** Docker Compose
+* **Monitoramento:** Zabbix
+* **Redes:** pfSense
 * **Automação:** Shell Script & rsync
 
 ---
