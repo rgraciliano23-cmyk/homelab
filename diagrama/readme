@@ -1,1 +1,25 @@
+graph TD
+### 🗺️ Topologia da Rede
+```mermaid
+(cole o código aqui)
+    %% Internet e Entrada
+    Internet((Mundo Externo)) --> FW[pfSense / Firewall]
+    
+    %% Camada de Hardware
+    subgraph Servidor_Fisico [Dell PowerEdge 2950]
+        RAID1[(RAID 1 - 1TB)] --- PVE[Proxmox VE]
+    end
 
+    %% Segmentação de Rede
+    FW --> VLAN10[VLAN 10: Management]
+    FW --> VLAN20[VLAN 20: DMZ / Web]
+    FW --> VLAN30[VLAN 30: Lab / Study]
+
+    %% Instâncias e Serviços
+    PVE -.-> |LXC/KVM| VLAN10
+    PVE -.-> |LXC/KVM| VLAN20
+    PVE -.-> |LXC/KVM| VLAN30
+
+    VLAN10 --> ZBX[Zabbix Monitor]
+    VLAN20 --> Proxy[Nginx Proxy Manager]
+    VLAN30 --> Docker[Docker Host: Portainer/App]
