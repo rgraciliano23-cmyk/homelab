@@ -1,0 +1,29 @@
+🛡️ Virtual Firewall Project - OpenWrt on Proxmox
+Este projeto detalha a implementação de um firewall virtualizado utilizando OpenWrt dentro de um ambiente Proxmox VE 7.x, rodando em hardware legado (Dell PowerEdge).
+
+📋 Visão Geral
+O objetivo deste setup é criar uma camada de segurança robusta entre a rede doméstica e o laboratório de testes, permitindo controle total sobre o tráfego e proteção contra ataques externos.
+
+⚙️ Configuração da VM (ID 201)
+Sistema Operacional: OpenWrt 23.05.0 r23497.
+
+CPU: 1 socket / 2 cores (Tipo: kvm64 para estabilidade).
+
+RAM: 512 MB.
+
+Interfaces de Rede:
+
+net0 (WAN): Conectada à vmbr0 (Roteador Físico) - IP: 192.168.1.9.
+
+net1 (LAN): Conectada à vmbr1 (Rede Interna Lab) - IP: 192.168.50.1.
+
+🔒 Implementações de Segurança
+1. Mitigação de DDoS e Inundação
+Configuramos regras específicas para proteger o servidor contra tentativas de negação de serviço:
+
+SYN-Flood Protection: Ativado nativamente para evitar esgotamento de conexões.
+
+Rate Limiting: Regra Drop-DDoS-High-Rate configurada na interface WAN para descartar pacotes que excedam o limite de 10/segundo com burst de 20.
+
+2. Controle de Acesso
+Acesso Administrativo: Liberado temporariamente via interface WAN (porta 80/443) para permitir a configuração inicial via Wi-Fi.
