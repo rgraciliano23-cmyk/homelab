@@ -25,7 +25,7 @@
 * **Sistemas Base:** Ubuntu Server
 * **Containers:** Docker Compose
 * **Monitoramento:** Zabbix
-* **Redes:** pfSense
+* **Redes:** OpenWrt 23.05
 * **Automação:** Shell Script & rsync
 
 ---
