@@ -1,29 +1,29 @@
-🛡️ Virtual Firewall Project - OpenWrt on Proxmox
-Este projeto detalha a implementação de um firewall virtualizado utilizando OpenWrt dentro de um ambiente Proxmox VE 7.x, rodando em hardware legado (Dell PowerEdge).
+🛡️ Implementação de Firewall Virtual (OpenWrt)
+📅 Data: 2026-01
 
-📋 Visão Geral
-O objetivo deste setup é criar uma camada de segurança robusta entre a rede doméstica e o laboratório de testes, permitindo controle total sobre o tráfego e proteção contra ataques externos.
+🖥️ Ambiente: Proxmox VE (Hardware Dell PowerEdge)
 
-⚙️ Configuração da VM (ID 201)
-Sistema Operacional: OpenWrt 23.05.0 r23497.
+📌 Categoria: Rede / Segurança
 
-CPU: 1 socket / 2 cores (Tipo: kvm64 para estabilidade).
+🧨 Problema
+A VM do OpenWrt (ID 201) foi criada, porém a interface de internet (WAN) não subia. A placa ficava em estado DOWN, 
+não recebia IP via DHCP do roteador principal e havia um conflito de IP, pois o padrão do OpenWrt (192.168.1.1) era o mesmo do roteador da residência.
 
-RAM: 512 MB.
+🔍 Diagnóstico
+Driver: O driver de rede VirtIO apresentou instabilidade no hardware antigo do servidor.
+Interface: A interface física eth0 estava desativada no sistema operacional.
+Configuração: O arquivo /etc/config/network não possuía a seção de WAN configurada corretamente.
 
-Interfaces de Rede:
+🛠️ Solução aplicada
+Mudança de Hardware: Alterado o modelo da placa de rede no Proxmox de VirtIO para Intel E1000 para garantir compatibilidade.
+Comandos de Rede: Ativação forçada da interface via ip link set eth0 up.
+Configuração UCI: Criação da interface WAN e alteração do IP da LAN para 192.168.50.1 para eliminar conflitos de rede.
+Segurança: Ativação de proteção contra SYN-flood e criação de regra de Rate Limiting (10 pacotes/seg) para mitigação de ataques DDoS.
 
-net0 (WAN): Conectada à vmbr0 (Roteador Físico) - IP: 192.168.1.9.
+✅ Resultado
+O firewall obteve o IP 192.168.1.9 na WAN, estabelecendo conexão com a internet. O acesso à interface administrativa (LuCI) foi liberado
+com sucesso, permitindo a gestão visual de tráfego e segurança do laboratório.
 
-net1 (LAN): Conectada à vmbr1 (Rede Interna Lab) - IP: 192.168.50.1.
-
-🔒 Implementações de Segurança
-1. Mitigação de DDoS e Inundação
-Configuramos regras específicas para proteger o servidor contra tentativas de negação de serviço:
-
-SYN-Flood Protection: Ativado nativamente para evitar esgotamento de conexões.
-
-Rate Limiting: Regra Drop-DDoS-High-Rate configurada na interface WAN para descartar pacotes que excedam o limite de 10/segundo com burst de 20.
-
-2. Controle de Acesso
-Acesso Administrativo: Liberado temporariamente via interface WAN (porta 80/443) para permitir a configuração inicial via Wi-Fi.
+📚 Lição aprendida
+Em servidores de hardware legado (como Dell PowerEdge), a emulação de hardware (Intel E1000) é mais confiável que drivers paravirtualizados.
+Além disso, a articulação correta das subnets é vital para evitar quedas na rede principal durante a virtualização de roteadores.
